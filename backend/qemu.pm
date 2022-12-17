@@ -585,7 +585,11 @@ sub start_qemu ($self) {
     my $vars = \%bmwqemu::vars;
 
     my $basedir = path('raid')->to_abs;
-    my $qemubin = $ENV{QEMU};
+    my $qemubin = $ENV{QEMU_BIN};
+
+    unless ($qemubin) {
+        $qemubin = $ENV{QEMU};
+    }
 
     my $qemuimg = find_bin('/usr/bin/', qw(kvm-img qemu-img));
 
